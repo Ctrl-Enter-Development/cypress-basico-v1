@@ -139,4 +139,18 @@ it('preenche os campos obrigatórios e envia o formulário com o clock', functio
   cy.get('.success').should('not.be.visible')
 })
 
+it('preenche os campos obrigatórios e envia o formulário com o clock', function(){
+  cy.clock()
+  cy.get('#firstName').type('Clinton', {delay: 0})
+  cy.get('#lastName').type('Rodrigues', {delay: 0})
+  cy.get('#email').type('clinton@example.com', {delay: 0})
+  cy.get('#open-text-area').type('Teste', {delay: 0})
+  cy.contains('button','Enviar').click()
+  cy.get('.success').should('be.visible')
+  cy.tick(THREE_SECOND_IN_MS)
+
+  cy.get('.success').should('not.be.visible')
+})
+
+
 })
